@@ -905,20 +905,20 @@ public class Browser {
             Method defineCommand = HttpCommandExecutor.class.getDeclaredMethod("defineCommand", String.class, CommandInfo.class);
             defineCommand.setAccessible(true);
             CommandExecutor commandExecutor = ((RemoteWebDriver) this.driver).getCommandExecutor();
-            try {
+           // try {
                 System.out.println("commandExecutor.getClass().getName() = " + commandExecutor.getClass().getName());
-                Class.forName("org.openqa.selenium.remote.TracedCommandExecutor");
+                //Class.forName("org.openqa.selenium.remote.TracedCommandExecutor");
                 if (commandExecutor instanceof TracedCommandExecutor) {
                     Field delegateField = TracedCommandExecutor.class.getDeclaredField("delegate");
                     delegateField.setAccessible(true);
                     commandExecutor = (CommandExecutor) delegateField.get(commandExecutor);
                 }
-            }catch (ClassNotFoundException cnfe){
-                cnfe.printStackTrace(System.out);
+           // }catch (Exception cnfe){
+          //      cnfe.printStackTrace(System.out);
                 //Then using selenium 3
-            }
+          // }
             defineCommand.invoke(commandExecutor, name, info);
-        } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | NoSuchFieldException e) {
+        } catch (NoSuchFieldException|InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
     }
