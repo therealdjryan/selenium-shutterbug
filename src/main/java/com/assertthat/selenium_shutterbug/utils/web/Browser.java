@@ -906,6 +906,7 @@ public class Browser {
             defineCommand.setAccessible(true);
             CommandExecutor commandExecutor = ((RemoteWebDriver) this.driver).getCommandExecutor();
             try {
+                System.out.println("commandExecutor.getClass().getName() = " + commandExecutor.getClass().getName());
                 Class.forName("org.openqa.selenium.remote.TracedCommandExecutor");
                 if (commandExecutor instanceof TracedCommandExecutor) {
                     Field delegateField = TracedCommandExecutor.class.getDeclaredField("delegate");
