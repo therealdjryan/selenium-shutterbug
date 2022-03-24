@@ -914,7 +914,7 @@ public class Browser {
                     commandExecutor = (CommandExecutor) delegateField.get(commandExecutor);
                 }
             }catch (ClassNotFoundException cnfe){
-                cnfe.printStackTrace();
+                cnfe.printStackTrace(System.out);
                 //Then using selenium 3
             }
             defineCommand.invoke(commandExecutor, name, info);
